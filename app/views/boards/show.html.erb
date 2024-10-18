@@ -1,0 +1,18 @@
+<h1 class="text-4xl font-bold text-center my-8">Board: <%= @board.name %></h1>
+<p class="text-center text-gray-500 mb-6">Created by: <%= @board.email %> on <%= @board.created_at.strftime("%B %d, %Y") %></p>
+
+<div class="max-w-2xl mx-auto">
+  <div class="grid grid-cols-<%= @board.width %> gap-2">
+    <% @board.board_data.each do |row| %>
+      <% row.each do |cell| %>
+        <div class="flex items-center justify-center w-12 h-12 border-2 rounded-lg <%= cell == 'M' ? 'bg-red-400' : 'bg-gray-200' %>">
+          <%= cell == 'M' ? '💣' : cell %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center mt-6">
+  <%= link_to 'Back to Home', root_path, class: "text-blue-500 hover:underline" %>
+</div>

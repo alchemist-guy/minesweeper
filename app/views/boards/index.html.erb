@@ -1,0 +1,47 @@
+<h1 class="text-4xl font-bold text-center my-8">Recently Generated Boards</h1>
+
+<!-- Filter by Date -->
+<div class="max-w-2xl mx-auto mb-8">
+  <%= form_with url: boards_path, method: :get, local: true, class: "space-y-6" do %>
+    <div class="grid grid-cols-3 gap-4">
+      <div>
+        <%= label_tag :start_date, "Start Date", class: "block text-gray-700 text-sm font-bold" %>
+        <%= date_field_tag :start_date, params[:start_date], class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <div>
+        <%= label_tag :end_date, "End Date", class: "block text-gray-700 text-sm font-bold" %>
+        <%= date_field_tag :end_date, params[:end_date], class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <div class="flex items-end">
+        <%= submit_tag "Filter", class: "px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition w-full" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+<div class="max-w-2xl mx-auto">
+  <% if @boards.empty? %>
+    <p class="text-center text-gray-500">No boards found within the selected date range.</p>
+  <% else %>
+    <ul class="space-y-4">
+      <% @boards.each do |board| %>
+        <li class="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition">
+          <h2 class="text-xl font-bold">
+            <%= link_to board.name, board_path(board), class: "text-blue-500 hover:underline" %>
+          </h2>
+          <p class="text-gray-600">Created by <%= board.email %> on <%= board.created_at.strftime("%B %d, %Y") %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="mt-6">
+    <%= paginate @boards %>
+  </div>
+
+  <div class="text-center mt-6">
+    <%= link_to 'Generate a new board', new_board_path, class: "px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition" %>
+  </div>
+</div>

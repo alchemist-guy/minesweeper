@@ -1,0 +1,38 @@
+<h1 class="text-4xl font-bold text-center my-8">Generate a Minesweeper Board</h1>
+
+<div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+  <%= form_with model: @board, local: true, class: "space-y-6" do |form| %>
+    <div class="space-y-1">
+      <%= form.label :name, "Board Name", class: "block text-gray-700 text-sm font-bold" %>
+      <%= form.text_field :name, class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="space-y-1">
+      <%= form.label :email, "Email", class: "block text-gray-700 text-sm font-bold" %>
+      <%= form.email_field :email, class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="space-y-1">
+      <%= form.label :width, "Board Width", class: "block text-gray-700 text-sm font-bold" %>
+      <%= form.number_field :width, class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="space-y-1">
+      <%= form.label :height, "Board Height", class: "block text-gray-700 text-sm font-bold" %>
+      <%= form.number_field :height, class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="space-y-1">
+      <%= form.label :mines, "Number of Mines", class: "block text-gray-700 text-sm font-bold" %>
+      <%= form.number_field :mines, class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit "Generate Board", class: "px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center mt-6">
+  <%= link_to 'View all boards', boards_path, class: "text-blue-500 hover:underline" %>
+</div>
