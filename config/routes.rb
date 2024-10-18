@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root "boards#new"
+  root "boards#index"
   resources :boards, only: [:index, :new, :create, :show]
 end
